@@ -1,0 +1,77 @@
+include layout
+
+block content
+    .container.mx-auto.pt-4
+      .w-full.max-w-lg.bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.mx-auto.mt-8
+        form#form(method='POST', action='/setting')
+          |
+          - if(failed){
+          .alert.alert-success.alert-dismissible.fade.show(role='alert')
+            strong #{failed}
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+              span(aria-hidden='true') ×
+          - }
+          |
+          - if(valid){
+          .alert.alert-success.alert-dismissible.fade.show(role='alert')
+            strong #{valid}
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+              span(aria-hidden='true') ×
+          - } 
+          div(aria-label='breadcrumb', style='margin-top:10px')
+            ol.breadcrumb
+              li.breadcrumb-item.active(aria-current='page')
+                h2 Security
+          .jumbotron 
+            div(align='center')
+              h3.font-bold Code generator 
+              p.text-sm
+                | You can use Code Generator to generate login codes. Set up a third-party app to generate codes.
+            .flex.items-center.mb-4.text-center
+              .col.text-grey-darker
+              input#disable(type='radio', name='two_fa', value='disable' checked=stwo_fa=='disable' onclick="clicked(event)")
+              |  Disable &nbsp     
+              input#enable(type='radio', name='two_fa', value='enable' checked=stwo_fa=='enable' onclick="this.form.submit();")
+              |  Enable
+          script(type='text/javascript').
+            function clicked(e)
+            {
+            if(!confirm('Are you sure?'))e.preventDefault();
+            else {document.getElementById('form').submit()}
+            }
+
+          |
+        - if(enable){
+            .alert.alert-info(role='alert')
+              label.font-bold Set Up a Third Party App to Generate Codes 
+              label.text-sm To get a third-party app working, either scan the QR code below or type the secret key into the app. 
+            .flex.mb-6
+              .col-3
+                label.block.text-grey-darker.text-left.mb-1.mb-0.pr-4.text-sm(for='inline-full-name')
+                  | Qr-image
+              .col
+                img(src=ssrc, alt='SecretKey Barcode')
+            .flex.mb-6
+              .col-3
+                label.block.text-grey-darker.text-left.mb-1.mb-0.pr-4.text-sm(for='inline-full-name')
+                  | Secret Key
+              .col
+                label.block.text-black.font-bold.text-left.mb-1.mb-0.pr-4.text-sm(for='inline-full-name' )  #{enable}
+            form(action='/settingGenerate/')
+              .flex.items-center.mb-6
+                .col-3
+                  label.block.text-grey-darker.text-left.mb-1.mb-0.pr-4.text-sm(for='inline-full-name')
+                    | Security Code
+                .col
+                  input#token.bg-white.border-grey-lighter.rounded.w-full.py-2.px-4.text-grey-darker(class='hover:border-purple' name = "token" value=stoken)
+                  | &nbsp      
+                  button.btn.btn-outline-info(type='submit')
+                    | CHECK 
+            |
+            - if(valid){
+              form.text-center(method='POST' action='/settingConfirm')
+                button.btn.btn-outline-success(type='submit')
+                  | CONFIRM 
+            - }  
+        - }    
+

@@ -1,0 +1,62 @@
+include layout
+
+block content
+  .container.mt-5
+    // Div that will hold the pie chart
+    div(aria-label='breadcrumb', style='background-color: #ebebeb;')
+      ol.breadcrumb
+        li.breadcrumb-item.active(aria-current='page', style='color: #005c99;')
+          h2 Gender Ratio
+    #piechart
+    div(aria-label='breadcrumb', style='background-color: #ebebeb;')
+      ol.breadcrumb
+        li.breadcrumb-item.active(aria-current='page', style='color: #005c99;')
+          h2 Students Chart
+    .form-group.dropdown
+      button.btn.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown')
+        | Years
+      .dropdown-menu
+        a.dropdown-item(href='/statistics/2018') 2018
+        a.dropdown-item(href='/statistics/2017') 2017                 
+    #line_chart
+
+    script(type='text/javascript').
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+      function drawChart1() {
+        var data = google.visualization.arrayToDataTable(!{obj1});
+        var options = {
+          title: '',
+          'height':500,
+          slices: {
+            0: { color: '#DB7093' },
+            1: { color: '#87CEEB' }
+          }
+        };
+        var chart1 = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart1.draw(data, options);
+      }  
+
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable(!{obj2});
+        var options = {
+          title: '',
+          curveType: 'none',
+          legend: { position: 'bottom' },
+          vAxis: {minValue: 3},
+          format: 'none',
+          'height':500
+        };
+        /*for (i = 0; i < data.getNumberOfRows(); i++) {
+          if ( data.getValue(1, i) == null )
+            data.setValue(1, i) = 0
+        }*/
+        var chart2 = new google.visualization.LineChart(document.getElementById('line_chart'));
+        chart2.draw(data, options);
+      }
+
+      $(window).resize(function(){
+        drawChart1();
+        drawChart2();
+      });   

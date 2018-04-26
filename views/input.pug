@@ -1,0 +1,51 @@
+include layout
+
+block content
+    .container.table-responsive.mt-5
+      div(style='background-color: #ebebeb;')
+        h2 Input New Students
+      form.shadow-md.w-full.mt-5(action='/input', method='POST')
+        .form-group.row
+          label.col-sm-2.col-form-label(for='adminis') Admission Date
+          .col-sm-10
+            input#admiss.form-control(type='text', name='adminis', disabled='')
+        .form-group.row
+          label.col-sm-2.col-form-label(for='name') Name
+          .col-sm-10
+            input#name.form-control(type='text', name='name', required='')
+        .form-group.row
+          label.col-sm-2.col-form-label(for='gender') Gender
+          .col-sm-10
+            input(type='radio', name='gender', value='M', checked='', align='left')
+            |  M
+            input(type='radio', name='gender', value='F')
+            |  F
+        .form-group.row
+          label.col-sm-2.col-form-label(for='date_of_birth') Date Of Birth
+          .col-sm-10
+            input#date_of_birth.form-control.datepicker(type='text', name='date_of_birth', required='')
+        .form-group.row
+          label.col-sm-2.col-form-label(for='student_email') Student Email
+          .col-sm-10
+            input#student_email.form-control(type='email', name='student_email', required='')
+        .form-group.row
+          label.col-sm-2.col-form-label(for='address') Address
+          .col-sm-10
+            textarea#address.form-control(name='address', required='')
+        .col-sm-10
+          input.btn.btn-info(type='submit', value='Input')
+
+script(type='text/javascript').
+  document.getElementById('admiss').value = formatDate(new Date());
+  function formatDate(date) {
+  var monthNames = [
+  "January", "February", "March",
+  "April", "May", "June", "July",
+  "August", "September", "October",
+  "November", "December"
+  ];
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+  }

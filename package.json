@@ -1,0 +1,38 @@
+{
+  "name": "nodejs-using-sequelize",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "alert-node": "^1.2.1",
+    "async": "^2.6.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "^4.16.3",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.1.2",
+    "http-errors": "~1.6.2",
+    "memorystore": "^1.6.0",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "node-2fa": "^1.1.2",
+    "nodemailer": "^4.6.4",
+    "nodemon": "^1.17.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pug": "2.0.0-beta11",
+    "sequelize": "^4.37.6",
+    "serve-favicon": "^2.5.0",
+    "session": "^0.1.0",
+    "session-memory-store": "^0.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}

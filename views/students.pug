@@ -1,0 +1,89 @@
+include layout
+
+block content
+    .container.table-responsive.mt-5
+      div(aria-label='breadcrumb', style='background-color: #ebebeb;')
+        ol.breadcrumb
+          li.breadcrumb-item.active(aria-current='page', style='color: #005c99;')
+            h2 Students List
+      .row.mt-5
+        .col-6
+          form(action='/search', method='POST')
+            .responsive
+              table
+                tr
+                  td
+                    input#keyword.form-control(name='keyword', type='text', style='margin-bottom: 20px')
+                  td
+                    select#kolom.form-control(name='kolom', style='margin-bottom: 20px')
+                      option(value='name') Name
+                      option(value='address') Address
+                  td
+                    select#sortBy.form-control(name='sortBy', style='margin-bottom: 20px')
+                      option(value='ASC') ASC
+                      option(value='DESC') DESC
+                  td
+                    input.btn.btn-primary(type='submit', value='Search', style='margin-bottom: 20px')
+        .col-6(align='right')
+          form(action='/input', method='GET')
+            input.btn.btn-primary(type='submit', value='Input', style='margin-bottom: 20px')
+      .table-responsive
+        table.table.table-striped
+          thead
+            tr
+              th(scope='col')= 'ID'
+              th(scope='col')= 'Name'
+              th(scope='col')= 'Admission Date'
+              th(scope='col')= 'Address'
+              th(scope='col')= 'Gender'
+              th(scope='col')= 'Date Of Birth'
+              th(scope='col')= 'Email'            
+              th(scope='col')= 'Action'
+          tbody
+          for students in data
+            tr
+              td= students.student_id
+              td= students.name
+              td= moment(students.admission_date).format('DD-MM-YYYY')
+              td= students.address
+              td= students.gender
+              td= moment(students.date_of_birth).format('DD-MM-YYYY')
+              td= students.student_email
+              td
+                a(href='/students/'+students.student_id)
+                  button.btn.btn-success(type='button')
+                    i.fa.fa-pencil
+                a(href='#')
+                  button.btn.btn-danger(type='button', onclick='hapus('+students.student_id+')')
+                    i.fa.fa-trash
+                  
+// Modal
+#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title WARNING!
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+      .modal-body
+        | Are you sure you want to delete this data?
+      .modal-footer
+        button.btn.btn-danger(type='button', onclick='prosesHapus()') YES
+        button.btn.btn-secondary(type='button', data-dismiss='modal') NO
+
+script(type='text/javascript').
+  function hapus (e) {
+  window.idStudent = e;
+  $("#myModal").modal('show');
+  }
+  function prosesHapus(){
+  var id = window.idStudent;
+  $.ajax({
+  url:'/students/delete/'+id,
+  type:'GET',
+  success : function (respon) {
+  setTimeout(function() {$("#myModal").modal('hide');}, 1000);
+  location.reload();
+  }
+  })
+  }

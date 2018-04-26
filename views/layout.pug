@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css')
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/gijgo@1.8.2/combined/js/gijgo.min.js', type='text/javascript')
+    link(href='https://cdn.jsdelivr.net/npm/gijgo@1.8.2/combined/css/gijgo.min.css', rel='stylesheet', type='text/css')
+    script.
+      $( function() {
+      $( ".datepicker" ).datepicker();
+      } );
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    // Load the AJAX API
+    script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
+  body
+    nav.navbar.navbar-expand-lg.navbar-light(style='background-color: #005c99;')
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavDropdown', aria-controls='navbarNavDropdown', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .container
+        #navbarNavDropdown.collapse.navbar-collapse
+          ul.navbar-nav
+            li.nav-item
+              a.navbar-brand(href='/index', style='color: #f8f9fa;')
+                i.fa.fa-home
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='/students', style='color: #f8f9fa;') Students List
+            li.nav-item.active
+              a.nav-link(href='/statistics/2018', style='color: #f8f9fa;') Statistics
+          ul.navbar-nav
+            li.nav-item.dropdown
+              a#navbardrop.nav-link.dropdown-toggle(href='#', style='color: #f8f9fa;', data-toggle='dropdown')
+                | Settings
+                i.fa.fa-setting
+              .dropdown-menu
+                a.dropdown-item(style='color: #005c99;', href='/setting') Keamanan
+                a.dropdown-item(style='color: #005c99;', href='/logout') Logout

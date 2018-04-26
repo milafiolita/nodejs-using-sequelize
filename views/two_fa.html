@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+  </head>
+  <body class="bg-grey">
+    <div class="container mx-auto pt-4">
+      <form method="POST" action="/two_fa/" class="w-full max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto mt-8">
+        <div class="text-center">
+          <label class="block font-bold text-grey-darker text-xl mb-6 mt-4">Two-factor authentication required</label>
+        </div>
+        <div class="flex items-center mb-6">
+          <div class="col">
+            <label class="block text-grey-darker text-left mb-1 mb-0 pr-4">Enter the 6-digit code from your code generator or third-party app below.</label>
+            <input id="username" name="username" readonly="readonly" class="bg-purple-lightest border-grey-lighter rounded w-full py-2 px-4 text-grey-darker hover:border-purple"/>
+          </div>
+        </div>
+        <div class="flex items-center mb-6">
+          <div class="col">
+            <input id="token" name="token" placeholder="Enter Your Security Code" class="bg-purple-lightest border-grey-lighter rounded w-full py-2 px-4 text-grey-darker hover:border-purple"/>
+          </div>
+        </div>
+        <div class="flex items-center mb-6">
+          <div class="col">
+            <button type="submit" value="submit" class="shadow bg-purple text-white font-bold py-2 px-4 rounded hover:bg-purple-light">SUBMIT</button><a href="/login" class="text-blue text-left mb-1 mb-0 pr-4 ml-6">Back to login</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
